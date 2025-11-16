@@ -36,6 +36,20 @@
   --fw-bold: 700;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--high-contrast-text);
+}
+
+p {
+  color: var(--low-contrast-text);
+}
+
 /*====== HEADER ======*/
 nav {
   width: 100%;
@@ -85,6 +99,7 @@ main {
   background-color: var(--bg-primary);
 }
 
+/*====== HERO ======*/
 .hero-section {
   width: 100%;
   height: 100vh;
@@ -111,7 +126,8 @@ main {
   align-items: center;
   flex-direction: column;
 }
-h1 {
+
+.hero h1 {
   font-size: var(--text-4xl);
   color: var(--neutral);
   font-weight: var(--fw-bold);
@@ -120,10 +136,117 @@ h1 {
   z-index: 100;
 }
 .hero p {
-  color: var(--high-contrast-text);
-  font-size: var(--text-2xl);
+  color: var(--low-contrast-text);
+  font-size: var(--text-body);
   text-align: center;
   font-weight: var(--fw-bold);
+}
+.hero a {
+  font-size: var(--text-lg);
+  padding: 8px 12px;
+  background-color: white;
+  text-transform: uppercase;
+  font-weight: var(--fw-bold);
+  cursor: pointer;
+  color: black;
+  position: relative;
+  z-index: 0;
+}
+.hero a::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background-color: var(--ui-hover);
+  z-index: -1;
+  transition: all 300ms ease;
+}
+.hero a:hover {
+  color: white;
+}
+.hero a:hover::after {
+  height: 100%;
+}
+
+.about {
+  max-width: 80vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.about h2 {
+  font-size: var(--text-3xl);
+  color: var(--high-contrast-text);
+  font-weight: var(--fw-bold);
+  margin-bottom: 5%;
+}
+.about p {
+  text-align: center;
+  line-height: 1.8;
+  color: var(--low-contrast-text);
+  font-size: var(--text-lg);
+}
+
+/*====== SKILLS ======*/
+.skills {
+  max-width: 80vw;
+  height: auto;
+  padding: 100px;
+}
+.skills h2 {
+  text-align: center;
+}
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+h3 {
+  font-size: var(--text-lg);
+  color: var(--high-contrast-text);
+}
+
+.skills-grid article {
+  padding: 20px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+  transition: all 200ms;
+}
+.skills-grid article:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+}
+.skills h2 {
+  font-size: var(--text-3xl);
+  color: var(--high-contrast-text);
+  font-weight: var(--fw-bold);
+  margin-bottom: 10%;
+}
+.skills-grid ul {
+  list-style: none;
+}
+.skills-grid ul li {
+  padding: 8px;
+  cursor: pointer;
+  transition: all 150ms ease-in-out;
+}
+.skills-grid ul li::before {
+  content: ">";
+}
+.skills-grid ul li:hover {
+  transform: translateX(10px);
+  color: var(--high-contrast-text);
+  font-weight: var(--fw-bold);
+}
+
+.contact {
+  max-width: 80vw;
 }
 
 @keyframes fadeInUp {
@@ -134,5 +257,57 @@ h1 {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/*responsiveness */
+
+@media (max-width: 1200px) {
+  html,
+  body {
+    width: 100%;
+    min-height: 100vh;
+  }
+}
+
+@media (max-width: 800px) {
+  .about p {
+    font-size: var(--text-body);
+  }
+  .skills {
+    padding: 0;
+  }
+  .contact article {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-section {
+    margin-bottom: 100px;
+  }
+  .hero h1 {
+    font-size: var(--text-3xl);
+    text-align: center;
+  }
+  .about {
+    margin-bottom: 50px;
+  }
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+  #project section {
+    grid-template-columns: 1fr;
+  }
+  .information {
+    width: 40px;
+    height: 40px;
+    padding: 4px;
+    border-radius: 100%;
+  }
+  .information img {
+    height: 20px;
+    width: 20px;
   }
 }
